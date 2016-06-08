@@ -25,6 +25,7 @@ const barrels: string[] = [
 
   // Thirdparty barrels.
   'rxjs',
+  'socket.io-client',
 
   // App specific barrels.
   'app',
@@ -34,6 +35,9 @@ const barrels: string[] = [
 
 const cliSystemConfigPackages: any = {};
 barrels.forEach((barrelName: string) => {
+  if(barrelName == 'socket.io-client')
+  cliSystemConfigPackages[barrelName] = { main: 'socket.io.js' }
+  else
   cliSystemConfigPackages[barrelName] = { main: 'index' };
 });
 
@@ -45,6 +49,7 @@ System.config({
   map: {
     '@angular': 'vendor/@angular',
     'rxjs': 'vendor/rxjs',
+    'socket.io-client': 'vendor/socket.io-client',
     'main': 'main.js'
   },
   packages: cliSystemConfigPackages
